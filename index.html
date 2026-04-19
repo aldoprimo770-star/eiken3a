@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英検3級モンスター単語クイズ A〜L</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- タイトル画面 -->
+  <div id="title-screen" class="screen active">
+    <div class="title-container">
+      <h1 class="main-title">英検3級<br>モンスター単語クイズ<br><span class="subtitle">A〜L</span></h1>
+      <div class="monsters-row">
+        <div class="monster-boy" id="monster-boy">
+          <svg viewBox="0 0 120 140" width="120" height="140">
+            <ellipse cx="60" cy="85" rx="45" ry="50" fill="#e74c3c"/>
+            <ellipse cx="60" cy="85" rx="45" ry="50" fill="url(#boyGrad)" opacity="0.5"/>
+            <circle cx="42" cy="72" r="14" fill="#fff"/>
+            <circle cx="78" cy="72" r="14" fill="#fff"/>
+            <circle cx="45" cy="72" r="7" fill="#222"/>
+            <circle cx="81" cy="72" r="7" fill="#222"/>
+            <circle cx="47" cy="70" r="2.5" fill="#fff"/>
+            <circle cx="83" cy="70" r="2.5" fill="#fff"/>
+            <path d="M48 95 Q60 108 72 95" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="32" cy="90" rx="8" ry="5" fill="#ff9999" opacity="0.5"/>
+            <ellipse cx="88" cy="90" rx="8" ry="5" fill="#ff9999" opacity="0.5"/>
+            <path d="M30 45 Q35 20 50 40" fill="#e74c3c" stroke="#c0392b" stroke-width="1"/>
+            <path d="M90 45 Q85 20 70 40" fill="#e74c3c" stroke="#c0392b" stroke-width="1"/>
+            <rect x="22" y="120" width="18" height="18" rx="8" fill="#c0392b"/>
+            <rect x="80" y="120" width="18" height="18" rx="8" fill="#c0392b"/>
+            <defs>
+              <radialGradient id="boyGrad" cx="40%" cy="30%">
+                <stop offset="0%" stop-color="#fff" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#e74c3c" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="monster-girl" id="monster-girl">
+          <svg viewBox="0 0 120 140" width="120" height="140">
+            <ellipse cx="60" cy="85" rx="45" ry="50" fill="#ff6b81"/>
+            <ellipse cx="60" cy="85" rx="45" ry="50" fill="url(#girlGrad)" opacity="0.5"/>
+            <circle cx="42" cy="72" r="14" fill="#fff"/>
+            <circle cx="78" cy="72" r="14" fill="#fff"/>
+            <circle cx="45" cy="74" r="7" fill="#222"/>
+            <circle cx="81" cy="74" r="7" fill="#222"/>
+            <circle cx="47" cy="72" r="2.5" fill="#fff"/>
+            <circle cx="83" cy="72" r="2.5" fill="#fff"/>
+            <path d="M50 95 Q60 106 70 95" stroke="#222" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="32" cy="90" rx="8" ry="5" fill="#ffb3c1" opacity="0.6"/>
+            <ellipse cx="88" cy="90" rx="8" ry="5" fill="#ffb3c1" opacity="0.6"/>
+            <circle cx="38" cy="38" r="8" fill="#FFD700"/>
+            <circle cx="82" cy="38" r="8" fill="#FFD700"/>
+            <circle cx="60" cy="30" r="9" fill="#FFD700"/>
+            <path d="M38 46 Q38 55 45 50" fill="#ff6b81"/>
+            <path d="M82 46 Q82 55 75 50" fill="#ff6b81"/>
+            <rect x="22" y="120" width="18" height="18" rx="8" fill="#e84765"/>
+            <rect x="80" y="120" width="18" height="18" rx="8" fill="#e84765"/>
+            <defs>
+              <radialGradient id="girlGrad" cx="40%" cy="30%">
+                <stop offset="0%" stop-color="#fff" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#ff6b81" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="title-stats">
+        <div class="title-stat-item">
+          <span class="title-stat-label">正解数</span>
+          <span class="title-stat-value" id="title-correct">0</span>
+        </div>
+        <div class="title-stat-item">
+          <span class="title-stat-label">カード</span>
+          <span class="title-stat-value" id="title-cards">0/16</span>
+        </div>
+        <div class="title-stat-item title-stat-rare">
+          <span class="title-stat-label">レアカード</span>
+          <span class="title-stat-value" id="title-rare">0/16</span>
+        </div>
+      </div>
+      <button id="start-btn" class="btn btn-start">スタート</button>
+      <button id="collection-btn" class="btn btn-collection">カードコレクション</button>
+      <button id="sound-toggle-title" class="btn btn-sound">音をONにする</button>
+      <button id="reset-btn" class="btn btn-reset">リセット</button>
+      <p class="brand">ALDO PRIMO</p>
+    </div>
+  </div>
+
+  <!-- クイズ画面 -->
+  <div id="quiz-screen" class="screen">
+    <div class="score-bar">
+      <div class="score-item">
+        <span class="score-label">正解</span>
+        <span class="score-value" id="total-correct">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">カード</span>
+        <span class="score-value" id="total-cards">0</span>
+      </div>
+      <div class="score-item rare">
+        <span class="score-label">レア</span>
+        <span class="score-value" id="total-rare">0</span>
+      </div>
+    </div>
+
+    <div class="quiz-progress">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <span class="progress-text" id="progress-text">1 / 10</span>
+    </div>
+
+    <div class="quiz-card" id="quiz-card">
+      <div class="word-display">
+        <span class="english-word" id="english-word">word</span>
+        <button class="btn-speak" id="btn-speak" aria-label="発音">&#128264;</button>
+      </div>
+      <div class="choices" id="choices"></div>
+    </div>
+
+    <div class="quiz-bottom-bar">
+      <button id="sound-toggle-quiz" class="btn btn-sound-small">音をONにする</button>
+      <button id="back-to-title-quiz" class="btn btn-back">トップにもどる</button>
+    </div>
+  </div>
+
+  <!-- 正解・不正解フィードバック -->
+  <div id="feedback-overlay" class="overlay hidden">
+    <div class="feedback-content" id="feedback-content">
+      <div class="feedback-icon" id="feedback-icon"></div>
+      <p class="feedback-text" id="feedback-text"></p>
+      <p class="feedback-answer" id="feedback-answer"></p>
+    </div>
+  </div>
+
+  <!-- 10問結果画面 -->
+  <div id="result-screen" class="screen">
+    <div class="result-container">
+      <h2 class="result-title">10問チャレンジ結果</h2>
+      <div class="result-circle" id="result-circle">
+        <span class="result-percent" id="result-percent">0%</span>
+      </div>
+      <p class="result-detail" id="result-detail"></p>
+      <div id="review-section" class="hidden">
+        <h3 class="review-title">まちがえた単語を復習しよう！</h3>
+        <button id="review-btn" class="btn btn-review">復習スタート</button>
+      </div>
+      <button id="next-round-btn" class="btn btn-start">次の10問へ</button>
+    </div>
+  </div>
+
+  <!-- 復習クイズ画面 -->
+  <div id="review-screen" class="screen">
+    <div class="score-bar">
+      <div class="score-item">
+        <span class="score-label">復習</span>
+        <span class="score-value" id="review-progress">0/0</span>
+      </div>
+    </div>
+    <div class="quiz-card">
+      <div class="word-display">
+        <span class="english-word" id="review-word">word</span>
+        <button class="btn-speak" id="btn-speak-review" aria-label="発音">&#128264;</button>
+      </div>
+      <div class="choices" id="review-choices"></div>
+    </div>
+    <div class="quiz-bottom-bar">
+      <button id="back-to-title-review" class="btn btn-back">トップにもどる</button>
+    </div>
+  </div>
+
+  <!-- カードコレクション画面 -->
+  <div id="collection-screen" class="screen">
+    <div class="collection-container">
+      <h2 class="collection-title">カードコレクション</h2>
+      <p class="collection-subtitle" id="collection-subtitle"></p>
+      <h3 class="collection-section-title">ノーマルカード</h3>
+      <div class="collection-grid" id="collection-grid-normal"></div>
+      <h3 class="collection-section-title rare-section-title">レアカード</h3>
+      <div class="collection-grid" id="collection-grid-rare"></div>
+      <button id="collection-close-btn" class="btn btn-start">とじる</button>
+    </div>
+  </div>
+
+  <!-- カード詳細モーダル -->
+  <div id="detail-overlay" class="overlay hidden">
+    <div class="detail-modal" id="detail-modal">
+      <div class="detail-card-img" id="detail-card-img"></div>
+      <h2 class="detail-name" id="detail-name"></h2>
+      <span class="detail-attr" id="detail-attr"></span>
+      <p class="detail-desc" id="detail-desc"></p>
+      <p class="detail-english" id="detail-english"></p>
+      <button id="detail-close-btn" class="btn btn-start">とじる</button>
+    </div>
+  </div>
+
+  <!-- リセット確認ダイアログ -->
+  <div id="reset-overlay" class="overlay hidden">
+    <div class="reset-dialog">
+      <p class="reset-message">すべてのデータをリセットしますか？</p>
+      <div class="reset-buttons">
+        <button id="reset-yes" class="btn btn-reset-yes">リセットする</button>
+        <button id="reset-no" class="btn btn-reset-no">やめる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- モンスターカード獲得画面 -->
+  <div id="card-overlay" class="overlay hidden">
+    <div class="card-modal" id="card-modal">
+      <h2 class="card-title" id="card-title">モンスターカード GET!</h2>
+      <div class="card-display" id="card-display"></div>
+      <p class="card-name" id="card-name"></p>
+      <p class="card-attr" id="card-attr"></p>
+      <p class="card-desc" id="card-desc"></p>
+      <button id="card-close-btn" class="btn btn-start">とじる</button>
+    </div>
+  </div>
+
+  <!-- コンプリートおめでとう画面 -->
+  <div id="congrats-overlay" class="overlay hidden">
+    <div class="congrats-container" id="congrats-container">
+      <div id="confetti-canvas"></div>
+      <div class="congrats-content">
+        <div class="congrats-icon">🎊</div>
+        <h1 class="congrats-title">CONGRATULATIONS!</h1>
+        <p class="congrats-sub">ノーマルカード 10枚コンプリート！</p>
+        <button id="congrats-close-btn" class="btn btn-start">やったー！</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
