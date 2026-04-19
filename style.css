@@ -741,6 +741,24 @@ body {
   margin-top: 4px;
 }
 
+.btn-next-question {
+  display: block;
+  width: 240px;
+  margin: 20px auto 0;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  color: #c0392b;
+  background: linear-gradient(180deg, #FFD700, #FFC107);
+  box-shadow: 0 4px 0 #e6a800, 0 6px 16px rgba(0,0,0,0.2);
+  border-radius: 50px;
+  animation: fadeInUp 0.3s ease;
+}
+
+.btn-next-question:active {
+  box-shadow: 0 2px 0 #e6a800;
+  transform: translateY(2px);
+}
+
 /* ============================================
    結果画面
    ============================================ */

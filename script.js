@@ -837,21 +837,20 @@ function handleAnswer(btn, selected, correct) {
 
   saveState();
 
+  state.pendingCard = false;
   if (state.totalCorrect >= state.nextCardAt && isCorrect) {
     state.nextCardAt += 50;
+    state.pendingCard = true;
     saveState();
-    setTimeout(() => checkMonsterCard(), 1600);
-  } else {
-    setTimeout(() => {
-      hideFeedback();
-      state.roundIndex++;
-      if (state.roundIndex >= 10) {
-        showResult();
-      } else {
-        showQuestion();
-      }
-    }, 1400);
   }
+
+  const nextBtn = $('next-question-btn');
+  if (state.roundIndex >= 9) {
+    nextBtn.textContent = state.pendingCard ? '次へ ▶' : '結果を見る ▶';
+  } else {
+    nextBtn.textContent = '次の問題に進む ▶';
+  }
+  setTimeout(() => nextBtn.classList.remove('hidden'), 600);
 }
 
 // ---------- フィードバック ----------
@@ -864,6 +863,7 @@ function showFeedback(isCorrect, wordObj) {
 
 function hideFeedback() {
   feedbackOverlay.classList.add('hidden');
+  $('next-question-btn').classList.add('hidden');
 }
 
 // ---------- 結果画面 ----------
@@ -1258,7 +1258,21 @@ function advanceAfterCard() {
   }
 }
 
-feedbackOverlay.addEventListener('click', () => {});
+$('next-question-btn').addEventListener('click', () => {
+  $('next-question-btn').classList.add('hidden');
+  if (state.pendingCard) {
+    state.pendingCard = false;
+    checkMonsterCard();
+  } else {
+    hideFeedback();
+    state.roundIndex++;
+    if (state.roundIndex >= 10) {
+      showResult();
+    } else {
+      showQuestion();
+    }
+  }
+});
 
 function backToTitle() {
   hideFeedback();
